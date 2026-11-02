@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DressMate AI — Personal AI Fashion Stylist</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav">
+    <a class="logo" href="#home">DressMate AI</a>
+
+    <div class="links" id="links">
+      <a href="#home">Home</a>
+      <a href="#stylist">AI Stylist</a>
+      <a href="#explore">Outfit Search</a>
+      <a href="#generator">Recommendations</a>
+      <a href="#mix">Mix &amp; Match</a>
+      <a href="#style-analysis">Drop Your Outfit</a>
+      <a href="#trending">Trending</a>
+      <a href="#saved">Saved (<span id="savedCount">0</span>)</a>
+    </div>
+
+    <button id="burger" type="button" aria-label="Toggle Menu">☰</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div>
+      <div class="eyebrow">✦ AI-POWERED PERSONAL STYLIST</div>
+      <h1>
+        Your AI-Powered<br>
+        <span>Personal Stylist.</span>
+      </h1>
+      <p>
+        Tell DressMate AI what you want to wear, search real outfits, upload your clothes for AI feedback, and get curated lookbooks for college, parties, and everyday life.
+      </p>
+
+      <div class="buttons">
+        <button class="btn" type="button" onclick="go('stylist')">
+          Ask My Stylist ✦
+        </button>
+        <button class="btn alt" type="button" onclick="go('explore')">
+          Search Outfits
+        </button>
+        <button class="btn alt" type="button" onclick="go('style-analysis')">
+          Upload Outfit 📸
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=85" alt="DressMate AI Fashion Model">
+      <div class="floating f1">
+        ✦ PERSONALIZED<br>
+        <strong>Curated Just for You</strong>
+      </div>
+      <div class="floating f2">
+        AI STYLIST ACTIVE<br>
+        <strong>Ready to Style You</strong>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 1. AI FASHION CHAT -->
+  <section id="stylist">
+    <div class="eyebrow">✦ FEATURE 1: AI FASHION CHAT</div>
+    <h2>Ask your <span>stylist.</span></h2>
+    <p class="section-desc">
+      Get instant fashion advice on outfits, color matching, college looks, accessories, and shoes.
+    </p>
+
+    <div class="chat card">
+      <div class="chat-head">
+        <span class="dot"></span>
+        <div class="chat-head-info">
+          <strong>DressMate AI Stylist</strong>
+          <small>Personal Fashion Assistant · Demo Mode (Ready for Backend)</small>
+        </div>
+        <span class="mode-tag">Demo Mode</span>
+      </div>
+
+      <div class="chat-log" id="chatLog">
+        <div class="message ai">
+          <div class="msg-sender">DressMate AI <span class="badge-demo">Demo AI</span></div>
+          Hi! I'm your AI fashion stylist ✨ Tell me what you'd like to style today — like <em>"Maroon top with blue jeans"</em>, <em>"College outfit ideas"</em>, or pick from the popular suggestions below!
+        </div>
+      </div>
+
+      <div class="suggestions-label">Try asking:</div>
+      <div class="suggestions">
+        <button class="chip" type="button" onclick="suggest('Maroon top with blue jeans')">
+          🍷 Maroon top + blue jeans
+        </button>
+        <button class="chip" type="button" onclick="suggest('Black top with baggy jeans')">
+          🖤 Black top + baggy jeans
+        </button>
+        <button class="chip" type="button" onclick="suggest('College outfit ideas')">
+          🎒 College outfit ideas
+        </button>
+        <button class="chip" type="button" onclick="suggest('Baby blue top with black pants')">
+          🩵 Baby blue + black pants
+        </button>
+        <button class="chip" type="button" onclick="suggest('What colours go with white?')">
+          🤍 Colour match with white
+        </button>
+        <button class="chip" type="button" onclick="suggest('Accessories and bags for college')">
+          👜 Accessories &amp; bags
+        </button>
+        <button class="chip" type="button" onclick="suggest('Party outfit ideas')">
+          ✨ Party night look
+        </button>
+        <button class="chip" type="button" onclick="suggest('Wedding and ethnic outfit ideas')">
+          🪷 Festive / Wedding look
+        </button>
+      </div>
+
+      <form class="chat-input" onsubmit="sendChat(event)">
+        <input id="chatInput" placeholder="Ask anything about styling, colors, college, or party..." autocomplete="off">
+        <button class="btn" type="submit">
+          Send ✦
+        </button>
+      </form>
+    </div>
+  </section>
+
+
+  <!-- 2. REAL OUTFIT SEARCH -->
+  <section id="explore">
+    <div class="eyebrow">✦ FEATURE 2: REAL OUTFIT SEARCH</div>
+    <h2>Find your <span>next look.</span></h2>
+    <p class="section-desc">
+      Search real outfit photographs with descriptions and direct photo source attribution.
+    </p>
+
+    <form class="search" onsubmit="searchLooks(event)">
+      <input
+        id="searchInput"
+        placeholder="Try 'maroon top with blue jeans', 'black baggy jeans', 'college', 'streetwear'..."
+        autocomplete="off"
+      >
+      <button class="btn" type="submit">
+        Search Outfits 🔍
+      </button>
+      <button class="btn alt" type="button" onclick="resetSearch()">
+        Show All
+      </button>
+    </form>
+
+    <div class="quick">
+      <span class="quick-title">Popular searches:</span>
+      <button class="chip" type="button" onclick="quick('maroon top with blue jeans')">
+        Maroon top + blue jeans
+      </button>
+      <button class="chip" type="button" onclick="quick('black top with baggy jeans')">
+        Black top + baggy jeans
+      </button>
+      <button class="chip" type="button" onclick="quick('college outfit')">
+        College outfit
+      </button>
+      <button class="chip" type="button" onclick="quick('baby blue top with black pants')">
+        Baby blue + black pants
+      </button>
+      <button class="chip" type="button" onclick="quick('streetwear')">
+        Casual streetwear
+      </button>
+      <button class="chip" type="button" onclick="quick('party')">
+        Party
+      </button>
+      <button class="chip" type="button" onclick="quick('saree')">
+        Traditional / Saree
+      </button>
+      <button class="chip" type="button" onclick="quick('white')">
+        White aesthetic
+      </button>
+    </div>
+
+    <!-- Live Results Info & Loading Indicator -->
+    <div id="searchMeta" class="search-meta"></div>
+
+    <div class="grid" id="results"></div>
+  </section>
+
+
+  <!-- CATEGORIES -->
+  <section>
+    <div class="eyebrow">✦ EXPLORE BY MOOD &amp; OCCASION</div>
+    <h2>Browse by <span>category.</span></h2>
+    <div class="categories" style="margin-top:25px">
+      <div class="category" onclick="quick('college')">
+        <div class="cat-icon">🎒</div>
+        <strong>College</strong>
+        <small>Everyday campus style</small>
+      </div>
+      <div class="category" onclick="quick('casual')">
+        <div class="cat-icon">👕</div>
+        <strong>Casual</strong>
+        <small>Comfy &amp; relaxed</small>
+      </div>
+      <div class="category" onclick="quick('party')">
+        <div class="cat-icon">🥂</div>
+        <strong>Party</strong>
+        <small>Night out &amp; events</small>
+      </div>
+      <div class="category" onclick="quick('traditional')">
+        <div class="cat-icon">🪷</div>
+        <strong>Traditional</strong>
+        <small>Sarees &amp; ethnic wear</small>
+      </div>
+      <div class="category" onclick="quick('streetwear')">
+        <div class="cat-icon">🧢</div>
+        <strong>Streetwear</strong>
+        <small>Oversized &amp; trendy</small>
+      </div>
+      <div class="category" onclick="quick('office')">
+        <div class="cat-icon">💼</div>
+        <strong>Office / Formal</strong>
+        <small>Smart &amp; elegant</small>
+      </div>
+      <div class="category" onclick="quick('travel')">
+        <div class="cat-icon">🧳</div>
+        <strong>Travel</strong>
+        <small>Airport &amp; vacation</small>
+      </div>
+      <div class="category" onclick="quick('minimal')">
+        <div class="cat-icon">🤍</div>
+        <strong>Minimalist</strong>
+        <small>Clean neutrals</small>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 3. DROP YOUR OUTFIT (IMAGE UPLOAD & ANALYSIS) -->
+  <section id="style-analysis">
+    <div class="eyebrow">✦ FEATURE 3: DROP YOUR OUTFIT</div>
+    <h2>Upload your <span>outfit photo.</span></h2>
+    <p class="section-desc">
+      Upload any outfit picture from your device for preview, validation, and a detailed styling analysis card.
+    </p>
+
+    <div class="card upload-container">
+      <div class="upload-dropzone" id="dropZone">
+        <input
+          type="file"
+          id="outfitFileInput"
+          accept="image/png, image/jpeg, image/jpg, image/webp"
+          style="display:none"
+        >
+
+        <div class="upload-placeholder" id="uploadPlaceholder">
+          <div class="upload-icon">📸</div>
+          <h3>Select or drag an outfit photo here</h3>
+          <p>Supports PNG, JPG, JPEG, WEBP (Max size: 5 MB)</p>
+          <button class="btn" type="button" onclick="document.getElementById('outfitFileInput').click()">
+            Choose Photo from Device
+          </button>
+        </div>
+
+        <div class="upload-preview-wrapper" id="previewWrapper" style="display:none">
+          <div class="preview-box">
+            <img id="previewImage" src="" alt="Outfit preview">
+          </div>
+          <div class="preview-actions">
+            <div id="fileInfo" class="file-info-badge"></div>
+            <div class="action-buttons">
+              <button class="btn" type="button" id="analyseBtn" onclick="analyzeOutfit()">
+                ✦ Analyse Outfit Now
+              </button>
+              <button class="btn alt" type="button" onclick="resetUpload()">
+                Change Image ↺
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload Error Notification Area -->
+      <div id="uploadError" class="upload-error-box" style="display:none"></div>
+
+      <!-- Analysis Results Area -->
+      <div id="analysisResult" class="analysis-result-area"></div>
+    </div>
+  </section>
+
+
+  <!-- 4. OUTFIT RECOMMENDATIONS (FILTER ENGINE) -->
+  <section id="generator">
+    <div class="eyebrow">✦ FEATURE 4: OUTFIT RECOMMENDATIONS</div>
+    <h2>Personalized <span>look generator.</span></h2>
+    <p class="section-desc">
+      Filter by occasion, clothing colour, clothing type, preferred style, and budget.
+    </p>
+
+    <div class="generator">
+      <form class="card form" onsubmit="generateRecommendations(event)">
+        <label class="field">
+          Occasion
+          <select id="genOccasion">
+            <option value="college">College / Campus</option>
+            <option value="casual">Casual / Daily</option>
+            <option value="party">Party / Night Out</option>
+            <option value="wedding">Wedding / Festive</option>
+            <option value="office">Office / Internship</option>
+            <option value="date">Date Night</option>
+            <option value="travel">Travel / Weekend</option>
+          </select>
+        </label>
+
+        <label class="field">
+          Clothing Colour
+          <select id="genColour">
+            <option value="any">Any Colour</option>
+            <option value="maroon">Maroon / Burgundy</option>
+            <option value="black">Black / Charcoal</option>
+            <option value="white">White / Cream</option>
+            <option value="blue">Blue Denim / Baby Blue</option>
+            <option value="pink">Pink / Pastel</option>
+            <option value="beige">Beige / Earth Tones</option>
+            <option value="green">Olive / Forest Green</option>
+          </select>
+        </label>
+
+        <label class="field">
+          Clothing Type
+          <select id="genClothingType">
+            <option value="top-jeans">Top &amp; Jeans</option>
+            <option value="oversized">Oversized Shirt &amp; Pants</option>
+            <option value="dress">Dress / One-piece</option>
+            <option value="ethnic">Saree / Kurti / Ethnic</option>
+            <option value="hoodie">Streetwear Hoodie &amp; Cargo</option>
+          </select>
+        </label>
+
+        <label class="field">
+          Preferred Style
+          <select id="genStyle">
+            <option value="casual">Casual &amp; Relaxed</option>
+            <option value="classy">Classy &amp; Elegant</option>
+            <option value="streetwear">Streetwear &amp; Oversized</option>
+            <option value="baddie">Baddie &amp; Trendy</option>
+            <option value="minimal">Minimalist Aesthetic</option>
+            <option value="traditional">Traditional / Festive</option>
+          </select>
+        </label>
+
+        <label class="field">
+          Budget (Optional)
+          <select id="genBudget">
+            <option value="all">Any Budget</option>
+            <option value="budget">Pocket-Friendly (Under ₹1,500)</option>
+            <option value="mid">Mid-Range (₹1,500 – ₹3,500)</option>
+            <option value="premium">Premium Collection (₹3,500+)</option>
+          </select>
+        </label>
+
+        <button class="btn" type="submit" style="width:100%; margin-top:10px;">
+          Generate Look ✦
+        </button>
+      </form>
+
+      <div class="generated card" id="generatedResult">
+        <div class="empty-state-card">
+          <div style="font-size:42px; margin-bottom:12px;">✨</div>
+          <h3>Select your preferences</h3>
+          <p style="color:var(--mute)">
+            Choose your occasion, preferred colour, clothing type, style, and budget to get an instant AI styling blueprint with matching accessories and shoes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- MIX & MATCH -->
+  <section id="mix">
+    <div class="eyebrow">✦ MIX &amp; MATCH STYLING</div>
+    <h2>One piece, <span>many moods.</span></h2>
+    <p class="section-desc">
+      Pick an item from your wardrobe and see how to style it in multiple ways.
+    </p>
+
+    <div class="mix-buttons">
+      <button class="chip" type="button" onclick="mix('maroon top')">
+        🍷 Maroon top
+      </button>
+      <button class="chip" type="button" onclick="mix('black cargo pants')">
+        🖤 Black cargo pants
+      </button>
+      <button class="chip" type="button" onclick="mix('blue baggy jeans')">
+        👖 Blue baggy jeans
+      </button>
+      <button class="chip" type="button" onclick="mix('baby blue top')">
+        🩵 Baby blue top
+      </button>
+      <button class="chip" type="button" onclick="mix('white oversized shirt')">
+        🤍 White oversized shirt
+      </button>
+      <button class="chip" type="button" onclick="mix('beige saree')">
+        🪷 Beige saree
+      </button>
+    </div>
+
+    <div id="mixResult" style="margin-top:20px"></div>
+  </section>
+
+
+  <!-- TRENDING LOOKS -->
+  <section id="trending">
+    <div class="eyebrow">✦ TRENDING LOOKS</div>
+    <h2>What's <span>in style now.</span></h2>
+    <p class="section-desc">
+      Handpicked seasonal trending fashion aesthetics curated for youth and college fashion.
+    </p>
+
+    <div class="grid" id="trendingGrid" style="margin-top:25px"></div>
+  </section>
+
+
+  <!-- SAVED LOOKS -->
+  <section id="saved">
+    <div class="eyebrow">✦ YOUR COLLECTION</div>
+    <h2>Saved <span>looks.</span></h2>
+    <p class="section-desc">
+      All outfits you have bookmarked are stored locally in your browser.
+    </p>
+
+    <div class="grid" id="savedGrid" style="margin-top:25px"></div>
+  </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <h3>DressMate AI</h3>
+    <p>Style smarter. Dress better. Your personal AI-powered fashion companion.</p>
+    <div class="footer-badges">
+      <span>College Project 2026</span>
+      <span>•</span>
+      <span>HTML / CSS / JavaScript</span>
+      <span>•</span>
+      <span>AI Fashion Companion</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating Action Button -->
+<button class="fab" type="button" onclick="go('stylist')" aria-label="Open AI Stylist">
+  ✨ Ask Stylist
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>

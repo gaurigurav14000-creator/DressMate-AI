@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DressMate AI — Personal AI Fashion Stylist</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+
+<style>
+/* =====================================================
+   DRESSMATE AI — MODERN AESTHETIC STYLESHEET
+   Warm luxury editorial fashion palette
+   ===================================================== */
+
+:root {
+  --bg: #f5efe6;
+  --card: #fffaf3;
+  --card-hover: #ffffff;
+  --ink: #2b2420;
+  --mute: #7a6a5d;
+  --brown: #6b4a36;
+  --choc: #3e2a1e;
+  --rose: #c79a95;
+  --taupe: #b8a590;
+  --line: #e4d8c8;
+  --accent-pink: #b05a68;
+  --accent-green: #5a7d58;
+  --shadow-sm: 0 4px 15px rgba(62, 42, 30, 0.05);
+  --shadow-md: 0 10px 30px rgba(62, 42, 30, 0.08);
+  --shadow-lg: 0 18px 45px rgba(62, 42, 30, 0.13);
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.6 "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--choc);
+}
+
+h1 {
+  font-size: clamp(2.8rem, 6.5vw, 5.2rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 1.35rem;
+}
+
+section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 85px 24px;
+}
+
+.section-desc {
+  color: var(--mute);
+  font-size: 1.05rem;
+  max-width: 650px;
+  margin-top: 6px;
+  margin-bottom: 25px;
+}
+
+button, input, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.btn {
+  border: 0;
+  border-radius: 99px;
+  padding: 13px 26px;
+  background: var(--choc);
+  color: var(--bg);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:hover {
+  background: #251810;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn.alt {
+  background: transparent;
+  color: var(--choc);
+  border: 1px solid var(--taupe);
+  box-shadow: none;
+}
+
+.btn.alt:hover {
+  background: rgba(110, 74, 54, 0.08);
+  border-color: var(--brown);
+}
+
+.eyebrow {
+  color: var(--accent-pink);
+  font-size: 0.8rem;
+  letter-spacing: 2.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.hero h1 span,
+h2 span {
+  color: var(--brown);
+  font-style: italic;
+}
+
+/* ================= NAVBAR ================= */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 250, 243, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--choc);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.links {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+
+.links a {
+  text-decoration: none;
+  color: var(--mute);
+  font-size: 0.93rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.links a:hover {
+  color: var(--choc);
+}
+
+#savedCount {
+  background: var(--accent-pink);
+  color: white;
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  border-radius: 99px;
+  font-weight: 700;
+}
+
+#burger {
+  display: none;
+  background: none;
+  border: 0;
+  font-size: 26px;
+  color: var(--choc);
+  padding: 4px;
+}
+
+/* ================= HERO ================= */
+.hero {
+  min-height: 84vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 50px;
+  padding-top: 40px;
+}
+
+.hero p {
+  color: var(--mute);
+  max-width: 540px;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  margin: 18px 0 28px;
+}
+
+.buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hero-image {
+  height: 520px;
+  position: relative;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 36px;
+  box-shadow: var(--shadow-lg);
+  border: 4px solid #fffaf3;
+}
+
+.floating {
+  position: absolute;
+  background: rgba(255, 250, 243, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 15px 20px;
+  box-shadow: var(--shadow-md);
+  font-size: 0.78rem;
+  letter-spacing: 1.2px;
+  color: var(--mute);
+}
+
+.floating strong {
+  display: block;
+  font-size: 0.96rem;
+  color: var(--choc);
+  letter-spacing: 0;
+  margin-top: 4px;
+}
+
+.f1 {
+  left: -20px;
+  top: 45px;
+}
+
+.f2 {
+  right: -20px;
+  bottom: 50px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+.floating {
+  animation: float 5.5s ease-in-out infinite;
+}
+
+.f2 {
+  animation-delay: 2.7s;
+}
+
+/* ================= CARDS GENERAL ================= */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+/* ================= 1. AI FASHION CHAT ================= */
+.chat {
+  overflow: hidden;
+  max-width: 950px;
+  margin: auto;
+  border-radius: var(--radius-lg);
+  background: #ffffff;
+}
+
+.chat-head {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--card);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #739e72;
+  box-shadow: 0 0 0 3px rgba(115, 158, 114, 0.25);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(115, 158, 114, 0.4); }
+  70% { box-shadow: 0 0 0 7px rgba(115, 158, 114, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(115, 158, 114, 0); }
+}
+
+.chat-head-info {
+  flex: 1;
+}
+
+.chat-head-info strong {
+  color: var(--choc);
+  font-size: 1.05rem;
+}
+
+.chat-head-info small {
+  color: var(--mute);
+  display: block;
+  font-size: 0.8rem;
+}
+
+.mode-tag {
+  background: #f0e6dc;
+  color: var(--brown);
+  border: 1px solid var(--taupe);
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.chat-log {
+  min-height: 340px;
+  max-height: 440px;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: #faf6f0;
+}
+
+.message {
+  max-width: 82%;
+  padding: 14px 18px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  position: relative;
+  word-break: break-word;
+}
+
+.message.ai {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  align-self: flex-start;
+  border-bottom-left-radius: 6px;
+  box-shadow: 0 4px 12px rgba(62, 42, 30, 0.04);
+}
+
+.message.user {
+  align-self: flex-end;
+  background: var(--choc);
+  color: var(--bg);
+  border-bottom-right-radius: 6px;
+}
+
+.msg-sender {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-demo {
+  background: #eee3d5;
+  color: var(--choc);
+  padding: 1px 7px;
+  border-radius: 99px;
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.suggestions-label {
+  padding: 14px 24px 6px;
+  font-size: 0.78rem;
+  color: var(--mute);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.suggestions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 0 24px 18px;
+}
+
+.chip {
+  border: 1px solid var(--taupe);
+  background: var(--card);
+  color: var(--choc);
+  border-radius: 99px;
+  padding: 8px 15px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.chip:hover {
+  background: var(--choc);
+  color: var(--bg);
+  border-color: var(--choc);
+}
+
+.chat-input {
+  border-top: 1px solid var(--line);
+  padding: 16px 20px;
+  display: flex;
+  gap: 12px;
+  background: var(--card);
+}
+
+.chat-input input {
+  flex: 1;
+  border: 1px solid var(--line);
+  background: #ffffff;
+  border-radius: 99px;
+  padding: 13px 20px;
+  outline: none;
+  color: var(--ink);
+  transition: border-color 0.2s;
+}
+
+.chat-input input:focus {
+  border-color: var(--brown);
+}
+
+/* ================= 2. REAL OUTFIT SEARCH ================= */
+.search {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0 16px;
+  flex-wrap: wrap;
+}
+
+.search input {
+  flex: 1;
+  min-width: 280px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 99px;
+  padding: 15px 24px;
+  outline: none;
+  font-size: 1rem;
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search input:focus {
+  border-color: var(--brown);
+  box-shadow: var(--shadow-md);
+}
+
+.quick {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.quick-title {
+  font-size: 0.82rem;
+  color: var(--mute);
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.search-meta {
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: var(--mute);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-meta strong {
+  color: var(--choc);
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--taupe);
+  border-top-color: var(--choc);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 22px;
+}
+
+.look {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
+.look:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.look-img {
+  height: 330px;
+  overflow: hidden;
+  position: relative;
+  background: #e7ded2;
+}
+
+.look-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.look:hover .look-img img {
+  transform: scale(1.03);
+}
+
+.look-pill {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(255, 250, 243, 0.92);
+  backdrop-filter: blur(8px);
+  border-radius: 99px;
+  padding: 4px 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--choc);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.look-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.look-body .eyebrow {
+  margin-bottom: 6px;
+}
+
+.look-body h3 {
+  font-size: 1.25rem;
+  margin-bottom: 6px;
+  color: var(--choc);
+}
+
+.look-body p {
+  color: var(--mute);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin-bottom: 14px;
+  flex: 1;
+}
+
+.tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.tags span {
+  border: 1px solid var(--line);
+  background: var(--bg);
+  border-radius: 99px;
+  padding: 3px 10px;
+  font-size: 0.72rem;
+  color: var(--mute);
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  margin-top: auto;
+}
+
+.source-link {
+  font-size: 0.75rem;
+  color: var(--brown);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.source-link:hover {
+  text-decoration: underline;
+}
+
+.save {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--choc);
+  border-radius: 99px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.save:hover {
+  background: var(--choc);
+  color: var(--bg);
+}
+
+.save.saved-active {
+  background: var(--accent-pink);
+  color: white;
+  border-color: var(--accent-pink);
+}
+
+.empty-card {
+  grid-column: 1 / -1;
+  padding: 45px 25px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--taupe);
+}
+
+.empty-card h3 {
+  margin-bottom: 8px;
+}
+
+/* ================= CATEGORIES ================= */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+  gap: 14px;
+}
+
+.category {
+  padding: 22px 14px;
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.category:hover {
+  background: var(--choc);
+  color: var(--bg);
+  transform: translateY(-3px);
+  border-color: var(--choc);
+}
+
+.category:hover strong,
+.category:hover small {
+  color: var(--bg);
+}
+
+.category .cat-icon {
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+
+.category strong {
+  font-size: 0.95rem;
+  color: var(--choc);
+}
+
+.category small {
+  font-size: 0.75rem;
+  color: var(--mute);
+}
+
+/* ================= 3. DROP YOUR OUTFIT ================= */
+.upload-container {
+  padding: 30px;
+  max-width: 950px;
+  margin: auto;
+  background: #ffffff;
+}
+
+.upload-dropzone {
+  border: 2px dashed var(--taupe);
+  border-radius: var(--radius-md);
+  padding: 40px 20px;
+  text-align: center;
+  background: #fffcf8;
+  transition: all 0.25s ease;
+}
+
+.upload-dropzone.dragover {
+  border-color: var(--choc);
+  background: #f7ede2;
+}
+
+.upload-placeholder .upload-icon {
+  font-size: 45px;
+  margin-bottom: 12px;
+}
+
+.upload-placeholder h3 {
+  margin-bottom: 6px;
+  font-size: 1.3rem;
+}
+
+.upload-placeholder p {
+  color: var(--mute);
+  font-size: 0.88rem;
+  margin-bottom: 20px;
+}
+
+.upload-preview-wrapper {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.preview-box {
+  width: 250px;
+  height: 310px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 3px solid #ffffff;
+  background: #ded2c3;
+}
+
+.preview-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.preview-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.file-info-badge {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: var(--mute);
+}
+
+.file-info-badge strong {
+  color: var(--choc);
+  display: block;
+  font-size: 0.95rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.upload-error-box {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #fbeae8;
+  border: 1px solid #e8b0a9;
+  color: #922b21;
+  font-size: 0.9rem;
+}
+
+/* Analysis Card */
+.analysis-result-area {
+  margin-top: 25px;
+}
+
+.analysis-card {
+  padding: 30px;
+  border-radius: var(--radius-md);
+  background: #fffaf3;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.analysis-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 15px;
+  margin-bottom: 22px;
+}
+
+.analysis-header h3 {
+  font-size: 1.5rem;
+  color: var(--choc);
+}
+
+.analysis-badge {
+  background: var(--choc);
+  color: var(--bg);
+  padding: 5px 14px;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.analysis-section {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+}
+
+.analysis-section h4 {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--brown);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.analysis-section p {
+  color: var(--mute);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.analysis-backend-note {
+  margin-top: 18px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #faf2ea;
+  border: 1px dashed var(--taupe);
+  font-size: 0.8rem;
+  color: var(--mute);
+}
+
+/* ================= 4. RECOMMENDATIONS (GENERATOR) ================= */
+.generator {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 25px;
+}
+
+.generator .form {
+  padding: 28px;
+  background: #ffffff;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+  color: var(--mute);
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.field select {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  outline: none;
+  font-weight: 400;
+  font-size: 0.92rem;
+}
+
+.field select:focus {
+  border-color: var(--brown);
+}
+
+.generated {
+  padding: 28px;
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.empty-state-card {
+  text-align: center;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.empty-state-card h3 {
+  margin-bottom: 8px;
+}
+
+.generated-look {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 25px;
+  align-items: center;
+}
+
+.generated-look-img {
+  height: 380px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.generated-look-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.generated-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.generated-details h3 {
+  font-size: 1.6rem;
+  color: var(--choc);
+}
+
+.generated-item {
+  display: flex;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--mute);
+  background: var(--bg);
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+}
+
+.generated-item strong {
+  color: var(--ink);
+  min-width: 80px;
+}
+
+/* ================= MIX & MATCH ================= */
+.mix-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 15px 0 25px;
+}
+
+.mix-card {
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.mix-card h3 {
+  font-size: 1.45rem;
+  margin-bottom: 12px;
+}
+
+.mix-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.mix-pill {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.mix-pill strong {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--brown);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.mix-pill span {
+  font-size: 0.95rem;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* ================= FOOTER & FAB ================= */
+footer {
+  background: var(--choc);
+  color: #e8d6bf;
+  text-align: center;
+  padding: 55px 24px;
+  margin-top: 50px;
+}
+
+footer h3 {
+  color: var(--bg);
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+footer p {
+  color: #c9b39e;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+.footer-badges {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  font-size: 0.82rem;
+  color: #a89482;
+  flex-wrap: wrap;
+}
+
+.fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 90;
+  border: 0;
+  border-radius: 99px;
+  padding: 14px 22px;
+  background: var(--choc);
+  color: var(--bg);
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+.fab:hover {
+  background: #251810;
+  transform: translateY(-3px);
+}
+
+/* ================= RESPONSIVE DESIGN ================= */
+@media (max-width: 950px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 35px;
+  }
+
+  .hero p {
+    margin: 18px auto 26px;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .hero-image {
+    height: 420px;
+    max-width: 500px;
+    margin: auto;
+    width: 100%;
+  }
+
+  .generator {
+    grid-template-columns: 1fr;
+  }
+
+  .generated-look {
+    grid-template-columns: 1fr;
+  }
+
+  .generated-look-img {
+    height: 300px;
+  }
+
+  .links {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: #fffaf3;
+    padding: 20px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow-md);
+  }
+
+  .links.show {
+    display: flex;
+  }
+
+  #burger {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  section {
+    padding: 55px 18px;
+  }
+
+  .hero-image {
+    height: 340px;
+  }
+
+  .floating {
+    display: none;
+  }
+
+  .chat-log {
+    min-height: 280px;
+    padding: 16px;
+  }
+
+  .message {
+    max-width: 90%;
+  }
+
+  .preview-box {
+    width: 100%;
+    height: 280px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav">
+    <a class="logo" href="#home">DressMate AI</a>
+
+    <div class="links" id="links">
+      <a href="#home">Home</a>
+      <a href="#stylist">AI Stylist</a>
+      <a href="#explore">Outfit Search</a>
+      <a href="#generator">Recommendations</a>
+      <a href="#mix">Mix &amp; Match</a>
+      <a href="#style-analysis">Drop Your Outfit</a>
+      <a href="#trending">Trending</a>
+      <a href="#saved">Saved (<span id="savedCount">0</span>)</a>
+    </div>
+
+    <button id="burger" type="button" aria-label="Toggle Menu">☰</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div>
+      <div class="eyebrow">✦ AI-POWERED PERSONAL STYLIST</div>
+      <h1>
+        Your AI-Powered<br>
+        <span>Personal Stylist.</span>
+      </h1>
+      <p>
+        Tell DressMate AI what you want to wear, search real outfits, upload your clothes for AI feedback, and get curated lookbooks for college, parties, and everyday life.
+      </p>
+
+      <div class="buttons">
+        <button class="btn" type="button" onclick="go('stylist')">
+          Ask My Stylist ✦
+        </button>
+        <button class="btn alt" type="button" onclick="go('explore')">
+          Search Outfits
+        </button>
+        <button class="btn alt" type="button" onclick="go('style-analysis')">
+          Upload Outfit 📸
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=85" alt="DressMate AI Fashion Model">
+      <div class="floating f1">
+        ✦ PERSONALIZED<br>
+        <strong>Curated Just for You</strong>
+      </div>
+      <div class="floating f2">
+        AI STYLIST ACTIVE<br>
+        <strong>Ready to Style You</strong>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 1. AI FASHION CHAT -->
+  <section id="stylist">
+    <div class="eyebrow">✦ FEATURE 1: AI FASHION CHAT</div>
+    <h2>Ask your <span>stylist.</span></h2>
+    <p class="section-desc">
+      Get instant fashion advice on outfits, color matching, college looks, accessories, and shoes.
+    </p>
+
+    <div class="chat card">
+      <div class="chat-head">
+        <span class="dot"></span>
+        <div class="chat-head-info">
+          <strong>DressMate AI Stylist</strong>
+          <small>Personal Fashion Assistant · Demo Mode (Ready for Backend)</small>
+        </div>
+        <span class="mode-tag">Demo Mode</span>
+      </div>
+
+      <div class="chat-log" id="chatLog">
+        <div class="message ai">
+          <div class="msg-sender">DressMate AI <span class="badge-demo">Demo AI</span></div>
+          Hi! I'm your AI fashion stylist ✨ Tell me what you'd like to style today — like <em>"Maroon top with blue jeans"</em>, <em>"College outfit ideas"</em>, or pick from the popular suggestions below!
+        </div>
+      </div>
+
+      <div class="suggestions-label">Try asking:</div>
+      <div class="suggestions">
+        <button class="chip" type="button" onclick="suggest('Maroon top with blue jeans')">
+          🍷 Maroon top + blue jeans
+        </button>
+        <button class="chip" type="button" onclick="suggest('Black top with baggy jeans')">
+          🖤 Black top + baggy jeans
+        </button>
+        <button class="chip" type="button" onclick="suggest('College outfit ideas')">
+          🎒 College outfit ideas
+        </button>
+        <button class="chip" type="button" onclick="suggest('Baby blue top with black pants')">
+          🩵 Baby blue + black pants
+        </button>
+        <button class="chip" type="button" onclick="suggest('What colours go with white?')">
+          🤍 Colour match with white
+        </button>
+        <button class="chip" type="button" onclick="suggest('Accessories and bags for college')">
+          👜 Accessories &amp; bags
+        </button>
+        <button class="chip" type="button" onclick="suggest('Party outfit ideas')">
+          ✨ Party night look
+        </button>
+        <button class="chip" type="button" onclick="suggest('Wedding and ethnic outfit ideas')">
+          🪷 Festive / Wedding look
+        </button>
+      </div>
+
+      <form class="chat-input" onsubmit="sendChat(event)">
+        <input id="chatInput" placeholder="Ask anything about styling, colors, college, or party..." autocomplete="off">
+        <button class="btn" type="submit">
+          Send ✦
+        </button>
+      </form>
+    </div>
+  </section>
+
+
+  <!-- 2. REAL OUTFIT SEARCH -->
+  <section id="explore">
+    <div class="eyebrow">✦ FEATURE 2: REAL OUTFIT SEARCH</div>
+    <h2>Find your <span>next look.</span></h2>
+    <p class="section-desc">
+      Search real outfit photographs with descriptions and direct photo source attribution.
+    </p>
+
+    <form class="search" onsubmit="searchLooks(event)">
+      <input
+        id="searchInput"
+        placeholder="Try 'maroon top with blue jeans', 'black baggy jeans', 'college', 'streetwear'..."
+        autocomplete="off"
+      >
+      <button class="btn" type="submit">
+        Search Outfits 🔍
+      </button>
+      <button class="btn alt" type="button" onclick="resetSearch()">
+        Show All
+      </button>
+    </form>
+
+    <div class="quick">
+      <span class="quick-title">Popular searches:</span>
+      <button class="chip" type="button" onclick="quick('maroon top with blue jeans')">
+        Maroon top + blue jeans
+      </button>
+      <button class="chip" type="button" onclick="quick('black top with baggy jeans')">
+        Black top + baggy jeans
+      </button>
+      <button class="chip" type="button" onclick="quick('college outfit')">
+        College outfit
+      </button>
+      <button class="chip" type="button" onclick="quick('baby blue top with black pants')">
+        Baby blue + black pants
+      </button>
+      <button class="chip" type="button" onclick="quick('streetwear')">
+        Casual streetwear
+      </button>
+      <button class="chip" type="button" onclick="quick('party')">
+        Party
+      </button>
+      <button class="chip" type="button" onclick="quick('saree')">
+        Traditional / Saree
+      </button>
+      <button class="chip" type="button" onclick="quick('white')">
+        White aesthetic
+      </button>
+    </div>
+
+    <!-- Live Results Info & Loading Indicator -->
+    <div id="searchMeta" class="search-meta"></div>
+
+    <div class="grid" id="results"></div>
+  </section>
+
+
+  <!-- CATEGORIES -->
+  <section>
+    <div class="eyebrow">✦ EXPLORE BY MOOD &amp; OCCASION</div>
+    <h2>Browse by <span>category.</span></h2>
+    <div class="categories" style="margin-top:25px">
+      <div class="category" onclick="quick('college')">
+        <div class="cat-icon">🎒</div>
+        <strong>College</strong>
+        <small>Everyday campus style</small>
+      </div>
+      <div class="category" onclick="quick('casual')">
+        <div class="cat-icon">👕</div>
+        <strong>Casual</strong>
+        <small>Comfy &amp; relaxed</small>
+      </div>
+      <div class="category" onclick="quick('party')">
+        <div class="cat-icon">🥂</div>
+        <strong>Party</strong>
+        <small>Night out &amp; events</small>
+      </div>
+      <div class="category" onclick="quick('traditional')">
+        <div class="cat-icon">🪷</div>
+        <strong>Traditional</strong>
+        <small>Sarees &amp; ethnic wear</small>
+      </div>
+      <div class="category" onclick="quick('streetwear')">
+        <div class="cat-icon">🧢</div>
+        <strong>Streetwear</strong>
+        <small>Oversized &amp; trendy</small>
+      </div>
+      <div class="category" onclick="quick('office')">
+        <div class="cat-icon">💼</div>
+        <strong>Office / Formal</strong>
+        <small>Smart &amp; elegant</small>
+      </div>
+      <div class="category" onclick="quick('travel')">
+        <div class="cat-icon">🧳</div>
+        <strong>Travel</strong>
+        <small>Airport &amp; vacation</small>
+      </div>
+      <div class="category" onclick="quick('minimal')">
+        <div class="cat-icon">🤍</div>
+        <strong>Minimalist</strong>
+        <small>Clean neutrals</small>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 3. DROP YOUR OUTFIT (IMAGE UPLOAD & ANALYSIS) -->
+  <section id="style-analysis">
+    <div class="eyebrow">✦ FEATURE 3: DROP YOUR OUTFIT</div>
+    <h2>Upload your <span>outfit photo.</span></h2>
+    <p class="section-desc">
+      Upload any outfit picture from your device for preview, validation, and a detailed styling analysis card.
+    </p>
+
+    <div class="card upload-container">
+      <div class="upload-dropzone" id="dropZone">
+        <input
+          type="file"
+          id="outfitFileInput"
+          accept="image/png, image/jpeg, image/jpg, image/webp"
+          style="display:none"
+        >
+
+        <div class="upload-placeholder" id="uploadPlaceholder">
+          <div class="upload-icon">📸</div>
+          <h3>Select or drag an outfit photo here</h3>
+          <p>Supports PNG, JPG, JPEG, WEBP (Max size: 5 MB)</p>
+          <button class="btn" type="button" onclick="document.getElementById('outfitFileInput').click()">
+            Choose Photo from Device
+          </button>
+        </div>
+
+        <div class="upload-preview-wrapper" id="previewWrapper" style="display:none">
+          <div class="preview-box">
+            <img id="previewImage" src="" alt="Outfit preview">
+          </div>
+          <div class="preview-actions">
+            <div id="fileInfo" class="file-info-badge"></div>
+            <div class="action-buttons">
+              <button class="btn" type="button" id="analyseBtn" onclick="analyzeOutfit()">
+                ✦ Analyse Outfit Now
+              </button>
+              <button class="btn alt" type="button" onclick="resetUpload()">
+                Change Image ↺
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload Error Notification Area -->
+      <div id="uploadError" class="upload-error-box" style="display:none"></div>
+
+      <!-- Analysis Results Area -->
+      <div id="analysisResult" class="analysis-result-area"></div>
+    </div>
+  </section>
+
+
+  <!-- 4. OUTFIT RECOMMENDATIONS (FILTER ENGINE) -->
+  <section id="generator">
+    <div class="eyebrow">✦ FEATURE 4: OUTFIT RECOMMENDATIONS</div>
+    <h2>Personalized <span>look generator.</span></h2>
+    <p class="section-desc">
+      Filter by occasion, clothing colour, clothing type, preferred style, and budget.
+    </p>
+
+    <div class="generator">
+      <form class="card form" onsubmit="generateRecommendations(event)">
+        <label class="field">
+          Occasion
+          <select id="genOccasion">
+            <option value="college">College / Campus</option>
+            <option value="casual">Casual / Daily</option>
+            <option value="party">Party / Night Out</option>
+            <option value="wedding">Wedding / Festive</option>
+            <option value="office">Office / Internship</option>
+            <option value="date">Date Night</option>
+            <option value="travel">Travel / Weekend</option>
+          </select>
+        </label>
+
+        <label class="field">
+          Clothing Colour
+          <select id="genColour">
+            <option value="any">Any Colour</option>
+            <option value="maroon">Maroon / Burgundy</option>
+            <option value="black">Black / Charcoal</option>
+            <option value="white">White / Cream</option>
+            <option value="blue">Blue Denim / Baby Blue</option>
+            <option value="pink">Pink / Pastel</option>
+            <option value="beige">Beige / Earth Tones</option>
+            <option value="green">Olive / Forest Green</option>
+          </select>
+        </label>
+
+        <label class="field">
+          Clothing Type
+          <select id="genClothingType">
+            <option value="top-jeans">Top &amp; Jeans</option>
+            <option value="oversized">Oversized Shirt &amp; Pants</option>
+            <option value="dress">Dress / One-piece</option>
+            <option value="ethnic">Saree / Kurti / Ethnic</option>
+            <option value="hoodie">Streetwear Hoodie &amp; Cargo</option>
+          </select>
+        </label>
+
+        <label class="field">
+          Preferred Style
+          <select id="genStyle">
+            <option value="casual">Casual &amp; Relaxed</option>
+            <option value="classy">Classy &amp; Elegant</option>
+            <option value="streetwear">Streetwear &amp; Oversized</option>
+            <option value="baddie">Baddie &amp; Trendy</option>
+            <option value="minimal">Minimalist Aesthetic</option>
+            <option value="traditional">Traditional / Festive</option>
+          </select>
+        </label>
+
+        <label class="field">
+          Budget (Optional)
+          <select id="genBudget">
+            <option value="all">Any Budget</option>
+            <option value="budget">Pocket-Friendly (Under ₹1,500)</option>
+            <option value="mid">Mid-Range (₹1,500 – ₹3,500)</option>
+            <option value="premium">Premium Collection (₹3,500+)</option>
+          </select>
+        </label>
+
+        <button class="btn" type="submit" style="width:100%; margin-top:10px;">
+          Generate Look ✦
+        </button>
+      </form>
+
+      <div class="generated card" id="generatedResult">
+        <div class="empty-state-card">
+          <div style="font-size:42px; margin-bottom:12px;">✨</div>
+          <h3>Select your preferences</h3>
+          <p style="color:var(--mute)">
+            Choose your occasion, preferred colour, clothing type, style, and budget to get an instant AI styling blueprint with matching accessories and shoes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- MIX & MATCH -->
+  <section id="mix">
+    <div class="eyebrow">✦ MIX &amp; MATCH STYLING</div>
+    <h2>One piece, <span>many moods.</span></h2>
+    <p class="section-desc">
+      Pick an item from your wardrobe and see how to style it in multiple ways.
+    </p>
+
+    <div class="mix-buttons">
+      <button class="chip" type="button" onclick="mix('maroon top')">
+        🍷 Maroon top
+      </button>
+      <button class="chip" type="button" onclick="mix('black cargo pants')">
+        🖤 Black cargo pants
+      </button>
+      <button class="chip" type="button" onclick="mix('blue baggy jeans')">
+        👖 Blue baggy jeans
+      </button>
+      <button class="chip" type="button" onclick="mix('baby blue top')">
+        🩵 Baby blue top
+      </button>
+      <button class="chip" type="button" onclick="mix('white oversized shirt')">
+        🤍 White oversized shirt
+      </button>
+      <button class="chip" type="button" onclick="mix('beige saree')">
+        🪷 Beige saree
+      </button>
+    </div>
+
+    <div id="mixResult" style="margin-top:20px"></div>
+  </section>
+
+
+  <!-- TRENDING LOOKS -->
+  <section id="trending">
+    <div class="eyebrow">✦ TRENDING LOOKS</div>
+    <h2>What's <span>in style now.</span></h2>
+    <p class="section-desc">
+      Handpicked seasonal trending fashion aesthetics curated for youth and college fashion.
+    </p>
+
+    <div class="grid" id="trendingGrid" style="margin-top:25px"></div>
+  </section>
+
+
+  <!-- SAVED LOOKS -->
+  <section id="saved">
+    <div class="eyebrow">✦ YOUR COLLECTION</div>
+    <h2>Saved <span>looks.</span></h2>
+    <p class="section-desc">
+      All outfits you have bookmarked are stored locally in your browser.
+    </p>
+
+    <div class="grid" id="savedGrid" style="margin-top:25px"></div>
+  </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <h3>DressMate AI</h3>
+    <p>Style smarter. Dress better. Your personal AI-powered fashion companion.</p>
+    <div class="footer-badges">
+      <span>College Project 2026</span>
+      <span>•</span>
+      <span>HTML / CSS / JavaScript</span>
+      <span>•</span>
+      <span>AI Fashion Companion</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating Action Button -->
+<button class="fab" type="button" onclick="go('stylist')" aria-label="Open AI Stylist">
+  ✨ Ask Stylist
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
